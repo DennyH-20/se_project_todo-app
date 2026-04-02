@@ -1,14 +1,17 @@
 # Simple Todo App
 
-Give a brief description of the project here. Feel free to give it a different name.
+This app was created to simplify remembering everything you needed to get done by putting it all in one place. In addition to giving it a date to be completed by.
 
 ## Functionality
 
-Give a more detailed explanation of the project and its functionality.
+With this app you can input the task you need/want to get completeed and also put a date youd like it done by. once it if completed you can then delete said task.
 
 ## Technology
 
-Give a description of the technologies and techniques used. Pictures, GIFs, or screenshots that detail the project features are recommended.
+HTML
+CSS
+Blocks
+JavaScript
 
 ## Deployment
 
