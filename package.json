@@ -1,0 +1,20 @@
+{
+  "name": "se_project_todo-app",
+  "version": "1.0.0",
+  "description": "This app was created to simplify remembering everything you needed to get done by putting it all in one place. In addition to giving it a date to be completed by.",
+  "homepage": "https://github.com/DennyH-20/se_project_todo-app#readme",
+  "bugs": {
+    "url": "https://github.com/DennyH-20/se_project_todo-app/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DennyH-20/se_project_todo-app.git"
+  },
+  "license": "ISC",
+  "author": "",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}
