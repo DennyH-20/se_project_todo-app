@@ -13,25 +13,46 @@ const addTodoForm = addTodoPopupEl.querySelector(".popup__form");
 const addTodoCloseBtn = addTodoPopupEl.querySelector(".popup__close");
 const todosList = document.querySelector(".todos__list");
 
-const TodoCounter = new TodoCounter(initialTodos, ".counter__text");
+const todoCounter = new TodoCounter(initialTodos, ".counter__text");
 
 const addTodoPopup = new PopupWithForm({
   popupSelector: "#add-todo-popup",
-  handleFormSubmit: (evt) => {},
+  handleFormSubmit: (evt) => {
+    evt.preventDefault();
+    const name = evt.target.name.value;
+    const dateInput = evt.target.date.value;
+    const date = new Date(dateInput);
+    date.setMinutes(date.getMinutes() + date.getTimezoneOffset());
+    
+    const id = uuidv4();
+    const values = { name, date, id };
+    const todo = generateTodo(values);
+    section.addItem(todo);  // Use section.addItem instead of direct DOM
+    addTodoPopup.close();
+    addTodoForm.reset();
+  }
 });
-evt.preventDefault();
-const name = evt.target.name.value;
-const dateInput = evt.target.date.value;
-const date = new Date(dateInput);
-date.setMinutes(date.getMinutes() + date.getTimezoneOffset());
 
-const id = uuidv4();
-const values = { name, date, id };
-const todo = generateTodo(values);
-todosList.append(todo);
-closeModal(addTodoPopupEl);
-addTodoForm.reset();
-addTodoPopup.setEventListeners();
+
+
+const closeModal = (modal) => {
+  modal.classList.remove("popup_visible");
+};
+
+const handleCheck = (checked) => {
+  todoCounter.updateCompleted(checked);
+};
+
+//function handleCheck() {
+  //todoCounter.updatedCompleted(checked);
+//}
+
+const generateTodo = (data) => {
+  const todo = new Todo(data, "#todo-template", handleCheck);
+  const todoElement = todo.getView();
+
+  return todoElement;
+};
 
 const section = new Section({
   title: "Todos",
@@ -44,25 +65,6 @@ const section = new Section({
 });
 
 section.renderItems();
-
-const closeModal = (modal) => {
-  modal.classList.remove("popup_visible");
-};
-
-const handleCheck = (checked) => {
-  todoCounter.updateCompleted(checked);
-};
-
-function handleCheck() {
-  todoCounter.updatedCompleted(checked);
-}
-
-const generateTodo = (data) => {
-  const todo = new Todo(data, "#todo-template", handleCheck);
-  const todoElement = todo.getView();
-
-  return todoElement;
-};
 
 addTodoButton.addEventListener("click", () => {
   addTodoPopup.open();
